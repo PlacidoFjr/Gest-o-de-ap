@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Condomínio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="title">GESTÃO DE CONDOMÍNIOS</h1>
+    </header>
+    <main>
+        <section id="login-section" class="login-section">
+            <div class="login-container">
+                <div class="login-content welcome-content">
+                    <h2>Bem Vindo</h2>
+                    <button onclick="showRegister()" class="create-account-button">Criar conta</button>
+                </div>
+                <div class="login-content login-form-content">
+                    <h2>Faça Login</h2>
+                    <form id="login-form">
+                        <div class="input-group">
+                            <label for="login-username">Usuário:</label>
+                            <input type="text" id="login-username" name="username" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="login-password">Senha:</label>
+                            <input type="password" id="login-password" name="password" required>
+                        </div>
+                        <div class="input-group remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Lembrar</label>
+                        </div>
+                        <button type="submit" class="submit-button">Entrar</button>
+                        <p><a href="#" onclick="showRecover()">Esqueceu a senha?</a></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <section id="register-section" class="register-section" style="display:none;">
+            <h2>Cadastro de Morador</h2>
+            <form id="register-form">
+                <div class="input-group">
+                    <label for="register-name">Nome Completo:</label>
+                    <input type="text" id="register-name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-confirm-email">Confirmação de Email:</label>
+                    <input type="email" id="register-confirm-email" name="confirm-email" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-phone">Telefone:</label>
+                    <input type="text" id="register-phone" name="phone">
+                </div>
+                <div class="input-group">
+                    <label for="register-mobile">Celular:</label>
+                    <input type="text" id="register-mobile" name="mobile" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-cpf">CPF:</label>
+                    <input type="text" id="register-cpf" name="cpf" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-password">Senha:</label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-confirm-password">Confirmação de Senha:</label>
+                    <input type="password" id="register-confirm-password" name="confirm-password" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-state">Estado:</label>
+                    <input type="text" id="register-state" name="state" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-city">Cidade:</label>
+                    <input type="text" id="register-city" name="city" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-condo">Condomínio:</label>
+                    <input type="text" id="register-condo" name="condo" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-unit">Unidade:</label>
+                    <input type="text" id="register-unit" name="unit" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-condo-type">Tipo de Condomínio:</label>
+                    <input type="text" id="register-condo-type" name="condo-type" required>
+                </div>
+                <button type="submit" class="submit-button">Cadastrar</button>
+                <p>Já tem uma conta? <a href="#" onclick="showLogin()">Faça login</a></p>
+            </form>
+        </section>
+
+        <section id="recover-section" class="recover-section" style="display:none;">
+            <h2>Recuperar Senha</h2>
+            <form id="recover-form">
+                <div class="input-group">
+                    <label for="recover-email">Email:</label>
+                    <input type="email" id="recover-email" name="email" required>
+                </div>
+                <button type="submit" class="submit-button">Recuperar</button>
+                <p><a href="#" onclick="showLogin()">Voltar ao login</a></p>
+            </form>
+        </section>
+
+        <section id="dashboard-section" style="display:none;">
+            <div class="sidebar">
+                <a href="#dashboard">
+                    <i class="fas fa-flag"></i>
+                    <span>Painel</span>
+                </a>
+                <a href="#condo">
+                    <i class="fas fa-building"></i>
+                    <span>Condomínio</span>
+                </a>
+                <a href="#finance">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Financeiro</span>
+                </a>
+                <a href="#accounting">
+                    <i class="fas fa-calculator"></i>
+                    <span>Contabilidade</span>
+                </a>
+                <a href="#reports">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Relatórios</span>
+                </a>
+            </div>
+            <div class="main-content">
+                <h2>Bem-vindo, <span id="user-name"></span></h2>
+                <nav class="navbar">
+                    <a href="#" onclick="showSection('residents')">Moradores</a>
+                    <a href="#" onclick="showSection('payments')">Pagamentos</a>
+                    <a href="#" onclick="showSection('charges')">Cobranças</a>
+                    <a href="#" onclick="showSection('movements')">Movimentos</a>
+                    <a href="#" onclick="showSection('reports')">Relatórios</a>
+                    <a href="#" class="logout" onclick="logout()">Sair</a>
+                </nav>
+                <div class="dashboard-summary">
+                    <div class="summary-item success">
+                        <h3>Saldo em conta</h3>
+                        <div class="value" id="account-balance">R$ 0,00</div>
+                    </div>
+                    <div class="summary-item danger">
+                        <h3>Inadimplência</h3>
+                        <div class="value" id="default">R$ 0,00</div>
+                    </div>
+                    <div class="summary-item">
+                        <h3>Resumo do Mês</h3>
+                        <div class="value" id="month-summary">R$ 0,00</div>
+                    </div>
+                </div>
+                <section id="residents-section" style="display:none;">
+                    <h3>Moradores</h3>
+                    <ul id="residents-list"></ul>
+                </section>
+                <section id="payments-section" style="display:none;">
+                    <h3>Pagamentos</h3>
+                    <form id="payment-form">
+                        <div class="input-group">
+                            <label for="payment-amount">Valor:</label>
+                            <input type="number" id="payment-amount" name="amount" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="payment-date">Data:</label>
+                            <input type="date" id="payment-date" name="date" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="payment-description">Descrição:</label>
+                            <input type="text" id="payment-description" name="description" required>
+                        </div>
+                        <button type="submit" class="submit-button">Registrar Pagamento</button>
+                    </form>
+                    <button class="toggle-button" onclick="togglePayments()">Ocultar Pagamentos</button>
+                    <ul id="payments-list"></ul>
+                </section>
+                <section id="charges-section" style="display:none;">
+                    <h3>Cobranças</h3>
+                    <form id="charge-form">
+                        <div class="input-group">
+                            <label for="charge-issueDate">Data de Emissão:</label>
+                            <input type="date" id="charge-issueDate" name="issueDate" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-number">Número:</label>
+                            <input type="number" id="charge-number" name="number" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-reason">Motivo da Emissão:</label>
+                            <input type="text" id="charge-reason" name="reason" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-dueDate">Data de Vencimento:</label>
+                            <input type="date" id="charge-dueDate" name="dueDate" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-property">Moradia:</label>
+                            <input type="text" id="charge-property" name="property" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-description">Descrição:</label>
+                            <input type="text" id="charge-description" name="description" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-amount">Valor:</label>
+                            <input type="number" id="charge-amount" name="amount" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-discount">Descontos:</label>
+                            <input type="number" id="charge-discount" name="discount" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-deductions">Abatimentos:</label>
+                            <input type="number" id="charge-deductions" name="deductions" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-interest">Juros:</label>
+                            <input type="number" id="charge-interest" name="interest" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-penalty">Multa:</label>
+                            <input type="number" id="charge-penalty" name="penalty" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-otherAdditions">Outros Acréscimos:</label>
+                            <input type="number" id="charge-otherAdditions" name="otherAdditions" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-status">Situação:</label>
+                            <input type="text" id="charge-status" name="status" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-receivedDate">Data de Recebimento:</label>
+                            <input type="date" id="charge-receivedDate" name="receivedDate">
+                        </div>
+                        <div class="input-group">
+                            <label for="charge-reasonForCancellation">Motivo da Baixa:</label>
+                            <input type="text" id="charge-reasonForCancellation" name="reasonForCancellation">
+                        </div>
+                        <button type="submit" class="submit-button">Registrar Cobrança</button>
+                    </form>
+                    <ul id="charges-list"></ul>
+                </section>
+                <section id="movements-section" style="display:none;">
+                    <h3>Movimentos</h3>
+                    <form id="movement-form">
+                        <div class="input-group">
+                            <label for="movement-date">Data:</label>
+                            <input type="date" id="movement-date" name="date" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="movement-document">Documento:</label>
+                            <input type="text" id="movement-document" name="document" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="movement-value">Valor:</label>
+                            <input type="number" id="movement-value" name="value" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="movement-account">Conta:</label>
+                            <input type="text" id="movement-account" name="account" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="movement-detail">Detalhe:</label>
+                            <input type="text" id="movement-detail" name="detail" required>
+                        </div>
+                        <button type="submit" class="submit-button">Registrar Movimento</button>
+                    </form>
+                    <ul id="movements-list"></ul>
+                </section>
+                <section id="reports-section" style="display:none;">
+                    <h3>Relatórios</h3>
+                    <ul id="reports-list"></ul>
+                </section>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+cd "P:\Trabalho faculdade\Nova pasta (2)\web condominio\backend"
+npm install nodemailer
+dir
+node server.js
+>>
