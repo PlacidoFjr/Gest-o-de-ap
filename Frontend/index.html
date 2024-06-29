@@ -15,12 +15,8 @@
     <main>
         <section id="login-section" class="login-section">
             <div class="login-container">
-                <div class="login-content welcome-content">
-                    <h2>Bem Vindo</h2>
-                    <button onclick="showRegister()" class="create-account-button">Criar conta</button>
-                </div>
                 <div class="login-content login-form-content">
-                    <h2>Faça Login</h2>
+                    <h2>Bem-vindo! Faça seu login</h2>
                     <form id="login-form">
                         <div class="input-group">
                             <label for="login-username">Usuário:</label>
@@ -37,6 +33,7 @@
                         <button type="submit" class="submit-button">Entrar</button>
                         <p><a href="#" onclick="showRecover()">Esqueceu a senha?</a></p>
                     </form>
+                    <button onclick="showRegister()" class="create-account-button">Criar conta</button>
                 </div>
             </div>
         </section>
@@ -98,6 +95,7 @@
                 </div>
                 <button type="submit" class="submit-button">Cadastrar</button>
                 <p>Já tem uma conta? <a href="#" onclick="showLogin()">Faça login</a></p>
+                <button type="button" onclick="goBack()" class="back-button">Voltar</button>
             </form>
         </section>
 
@@ -110,35 +108,15 @@
                 </div>
                 <button type="submit" class="submit-button">Recuperar</button>
                 <p><a href="#" onclick="showLogin()">Voltar ao login</a></p>
+                <button type="button" onclick="goBack()" class="back-button">Voltar</button>
             </form>
         </section>
 
         <section id="dashboard-section" style="display:none;">
-            <div class="sidebar">
-                <a href="#dashboard">
-                    <i class="fas fa-flag"></i>
-                    <span>Painel</span>
-                </a>
-                <a href="#condo">
-                    <i class="fas fa-building"></i>
-                    <span>Condomínio</span>
-                </a>
-                <a href="#finance">
-                    <i class="fas fa-piggy-bank"></i>
-                    <span>Financeiro</span>
-                </a>
-                <a href="#accounting">
-                    <i class="fas fa-calculator"></i>
-                    <span>Contabilidade</span>
-                </a>
-                <a href="#reports">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Relatórios</span>
-                </a>
-            </div>
             <div class="main-content">
                 <h2>Bem-vindo, <span id="user-name"></span></h2>
                 <nav class="navbar">
+                    <a href="#" onclick="showSection('dashboard')">Painel</a>
                     <a href="#" onclick="showSection('residents')">Moradores</a>
                     <a href="#" onclick="showSection('payments')">Pagamentos</a>
                     <a href="#" onclick="showSection('charges')">Cobranças</a>
@@ -282,6 +260,49 @@
                     <h3>Relatórios</h3>
                     <ul id="reports-list"></ul>
                 </section>
+            </div>
+        </section>
+        <!-- Nova seção Condominios -->
+        <section id="condo-section" class="condo-section" style="display:none;">
+            <div class="blocos">
+                <h3>Blocos</h3>
+                <button onclick="addBlock()">+ Novo</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sigla</th>
+                            <th>Descrição</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Conteúdo dinâmico dos blocos -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="cadastro-moradia">
+                <h3>Cadastro da Moradia</h3>
+                <form id="cadastro-moradia-form">
+                    <div class="input-group">
+                        <label for="cadastro-bloco">Bloco</label>
+                        <select id="cadastro-bloco" name="bloco" required>
+                            <option value="">Selecione</option>
+                            <!-- Opções dinâmicas dos blocos -->
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="cadastro-sigla">Sigla</label>
+                        <input type="text" id="cadastro-sigla" name="sigla" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="cadastro-tipo">Tipo</label>
+                        <select id="cadastro-tipo" name="tipo" required>
+                            <option value="">Selecione</option>
+                            <!-- Opções dinâmicas dos tipos -->
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-button">Salvar</button>
+                </form>
             </div>
         </section>
     </main>

@@ -1,3 +1,4 @@
+/* Estilos globais */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -153,7 +154,8 @@ img {
     cursor: pointer;
 }
 
-.login-container {
+/* Estilos específicos para a tela de login */
+.login-section .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -161,33 +163,37 @@ img {
     background: linear-gradient(to right, #ff6e7f, #bfe9ff);
 }
 
-.login-box {
+.login-section .login-form-content {
     width: 400px;
     padding: 40px;
-    position: relative;
     background: #fff;
     text-align: center;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 
-.login-box h2 {
-    margin: 0 0 20px;
-    padding: 0;
+.login-section .login-form-content h2 {
+    margin-bottom: 20px;
     color: #333;
 }
 
-.login-box input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    background: #f1f1f1;
-    border: none;
-    outline: none;
+.login-section .login-form-content .input-group {
+    margin-bottom: 1rem;
+}
+
+.login-section .login-form-content .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.login-section .login-form-content .input-group input {
+    width: calc(100% - 10px);
+    padding: 0.5rem;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.login-box button {
+.login-section .login-form-content .submit-button {
     width: 100%;
     background: #2E86C1;
     border: none;
@@ -200,18 +206,12 @@ img {
     transition: 0.2s;
 }
 
-.login-box button:hover {
+.login-section .login-form-content .submit-button:hover {
     background: #2874A6;
 }
 
-.login-content {
-    flex: 1;
-    padding: 20px;
-    text-align: center;
-}
-
-.switch-button {
-    background-color: #fff;
+.login-section .login-form-content .create-account-button {
+    background-color: transparent;
     color: #2E86C1;
     border: 1px solid #2E86C1;
     padding: 10px;
@@ -220,51 +220,9 @@ img {
     transition: background-color 0.2s, color 0.2s;
 }
 
-.switch-button:hover {
+.login-section .login-form-content .create-account-button:hover {
     background-color: #2E86C1;
     color: #fff;
-}
-
-.input-group {
-    margin-bottom: 1rem;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.input-group input {
-    width: calc(100% - 10px);
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.payment-card {
-    background-color: #fff;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.alert {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.alert-error {
-    background-color: #f8d7da;
-    color: #721c24;
 }
 
 .hidden {

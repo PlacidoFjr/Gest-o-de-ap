@@ -21,6 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const API_URL = 'http://localhost:3000';
     let currentUser = null;
 
+    // Manter o estado do usuário após o login
+    function saveCurrentUser(user) {
+        currentUser = user;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+    }
+
+    function loadCurrentUser() {
+        const storedUser = localStorage.getItem('currentUser');
+        if (storedUser) {
+            currentUser = JSON.parse(storedUser);
+            userNameSpan.textContent = currentUser.email;
+            loginSection.style.display = 'none';
+            dashboardSection.style.display = 'block';
+            loadDashboardData();
+        }
+    }
+
     loginForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const username = event.target.username.value;
@@ -34,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             if (data.user) {
-                currentUser = data.user;
+                saveCurrentUser(data.user);
                 userNameSpan.textContent = username;
                 loginSection.style.display = 'none';
                 dashboardSection.style.display = 'block';
@@ -123,12 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.id) {
                     alert('Pagamento registrado com sucesso!');
                     loadPayments();
-                    updateAccountBalanceDisplay(); // Atualize o saldo após adicionar o pagamento
+                    updateAccountBalanceDisplay();
                 } else {
                     alert('Erro ao registrar pagamento');
                 }
             })
             .catch(error => console.error('Error:', error));
+        } else {
+            alert('Usuário não autenticado!');
         }
     });
 
@@ -319,8 +338,19 @@ document.addEventListener('DOMContentLoaded', () => {
         loginSection.style.display = 'block';
     }
 
+    window.goBack = function() {
+        if (registerSection.style.display === 'block') {
+            registerSection.style.display = 'none';
+            loginSection.style.display = 'block';
+        } else if (recoverSection.style.display === 'block') {
+            recoverSection.style.display = 'none';
+            loginSection.style.display = 'block';
+        }
+    }
+
     window.logout = function() {
         currentUser = null;
+        localStorage.removeItem('currentUser');
         dashboardSection.style.display = 'none';
         loginSection.style.display = 'block';
     }
@@ -336,4 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleButton.textContent = 'Mostrar Pagamentos';
         }
     }
+
+    // Carregar usuário atual ao carregar a página
+    loadCurrentUser();
 });
